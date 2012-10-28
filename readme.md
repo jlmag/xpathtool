@@ -1,12 +1,8 @@
 xpathtool
 =========
 
-Tool to test XPath syntaxe. It's build with [qooxdoo] framework
-
-=======
 >Tool to test XPath syntaxe. It's build with [qooxdoo] framework
 
----
 
 ##Goal##
 

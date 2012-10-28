@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd">
+
+    <Activities>
+        <Activity Sport="Running">
+            <Value>Act-1</Value>
+        </Activity>
+        <Activity Sport="Running">
+            <Value>Act-2</Value>
+        </Activity>
+        <MultiSportSession>
+            <FirstSport>
+                <Activity Sport="Biking">
+                    <Value>Act-3</Value>
+                </Activity>
+            </FirstSport>
+            <NextSport>
+                <Activity Sport="Running">
+                    <Value>Act-4</Value>
+                </Activity>
+            </NextSport><NextSport>
+                <Activity Sport="Running">
+                    <Value>Act-5</Value>
+                </Activity>
+            </NextSport>
+        </MultiSportSession>
+    </Activities>
+    
+</TrainingCenterDatabase>

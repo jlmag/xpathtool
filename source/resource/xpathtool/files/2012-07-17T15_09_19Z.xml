@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd">
+
+  <Activities>
+    <MultiSportSession>
+      <Id>2012-07-17T15:09:19Z</Id>
+      <FirstSport>
+        <Activity Sport="Running">
+          <Id>2012-07-17T15:09:19Z</Id>
+          <Lap StartTime="2012-07-17T15:09:19Z">
+            <TotalTimeSeconds>2857.6200000</TotalTimeSeconds>
+            <DistanceMeters>6054.2578125</DistanceMeters>
+            <MaximumSpeed>3.0557232</MaximumSpeed>
+            <Calories>558</Calories>
+            <AverageHeartRateBpm xsi:type="HeartRateInBeatsPerMinute_t">
+              <Value>157</Value>
+            </AverageHeartRateBpm>
+            <MaximumHeartRateBpm xsi:type="HeartRateInBeatsPerMinute_t">
+              <Value>173</Value>
+            </MaximumHeartRateBpm>
+            <Intensity>Active</Intensity>
+            <TriggerMethod>Manual</TriggerMethod>
+          </Lap>
+          <Lap StartTime="2012-07-18T13:36:29Z">
+            <TotalTimeSeconds>1.5000000</TotalTimeSeconds>
+            <DistanceMeters>0.0000000</DistanceMeters>
+            <MaximumSpeed>0.0000000</MaximumSpeed>
+            <Calories>0</Calories>
+            <AverageHeartRateBpm xsi:type="HeartRateInBeatsPerMinute_t">
+              <Value>157</Value>
+            </AverageHeartRateBpm>
+            <MaximumHeartRateBpm xsi:type="HeartRateInBeatsPerMinute_t">
+              <Value>173</Value>
+            </MaximumHeartRateBpm>
+            <Intensity>Active</Intensity>
+            <TriggerMethod>Manual</TriggerMethod>
+          </Lap>
+          <Creator xsi:type="Device_t">
+            <Name>F305</Name>
+            <UnitId>3811238325</UnitId>
+            <ProductID>484</ProductID>
+            <Version>
+              <VersionMajor>2</VersionMajor>
+              <VersionMinor>90</VersionMinor>
+              <BuildMajor>0</BuildMajor>
+              <BuildMinor>0</BuildMinor>
+            </Version>
+          </Creator>
+        </Activity>
+      </FirstSport>
+      <NextSport>
+        <Activity Sport="Biking">
+          <Id>2012-07-18T13:37:50Z</Id>
+          <Lap StartTime="2012-07-18T13:37:50Z">
+            <TotalTimeSeconds>1.3400000</TotalTimeSeconds>
+            <DistanceMeters>0.0000000</DistanceMeters>
+            <MaximumSpeed>0.0000000</MaximumSpeed>
+            <Calories>0</Calories>
+            <AverageHeartRateBpm xsi:type="HeartRateInBeatsPerMinute_t">
+              <Value>80</Value>
+            </AverageHeartRateBpm>
+            <MaximumHeartRateBpm xsi:type="HeartRateInBeatsPerMinute_t">
+              <Value>80</Value>
+            </MaximumHeartRateBpm>
+            <Intensity>Active</Intensity>
+            <TriggerMethod>Manual</TriggerMethod>
+          </Lap>
+          <Lap StartTime="2012-07-18T13:57:00Z">
+            <TotalTimeSeconds>839.3600000</TotalTimeSeconds>
+            <DistanceMeters>4958.4858398</DistanceMeters>
+            <MaximumSpeed>9.9407911</MaximumSpeed>
+            <Calories>207</Calories>
+            <AverageHeartRateBpm xsi:type="HeartRateInBeatsPerMinute_t">
+              <Value>131</Value>
+            </AverageHeartRateBpm>
+            <MaximumHeartRateBpm xsi:type="HeartRateInBeatsPerMinute_t">
+              <Value>155</Value>
+            </MaximumHeartRateBpm>
+            <Intensity>Active</Intensity>
+            <TriggerMethod>Manual</TriggerMethod>
+          </Lap>
+          <Creator xsi:type="Device_t">
+            <Name>F305</Name>
+            <UnitId>3811238325</UnitId>
+            <ProductID>484</ProductID>
+            <Version>
+              <VersionMajor>2</VersionMajor>
+              <VersionMinor>90</VersionMinor>
+              <BuildMajor>0</BuildMajor>
+              <BuildMinor>0</BuildMinor>
+            </Version>
+          </Creator>
+        </Activity>
+      </NextSport>
+    </MultiSportSession>
+  </Activities>
+
+  <Author xsi:type="Application_t">
+    <Name>Garmin Communicator Plug-In</Name>
+    <Build>
+      <Version>
+        <VersionMajor>4</VersionMajor>
+        <VersionMinor>0</VersionMinor>
+        <BuildMajor>3</BuildMajor>
+        <BuildMinor>0</BuildMinor>
+      </Version>
+      <Type>Internal</Type>
+      <Time>May 30 2012, 13:32:33</Time>
+      <Builder>sqa</Builder>
+    </Build>
+    <LangID>EN</LangID>
+    <PartNumber>006-A0160-00</PartNumber>
+  </Author>
+
+</TrainingCenterDatabase>

@@ -165,6 +165,7 @@ pip-log.txt
 #############
 ## QooXdoo
 #############
-
+build/
+mockups/
 generate.py
 readme.txt

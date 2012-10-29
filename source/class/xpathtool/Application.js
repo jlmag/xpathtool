@@ -50,6 +50,18 @@ qx.Class.define("xpathtool.Application",
         qx.log.appender.Console;
       }
       
+      // add the xpath tool
+      var root = this.getRoot();
+      
+      // The xpath tool
+      var xpathTool = new xpathtool.ui.Container();
+      xpathTool.set({
+        width: 700,
+        height: 300
+      });
+      
+      // Add xpathtool in root
+      root.add(xpathTool, ({top: 20, left: 20}));
     }
   }
 });

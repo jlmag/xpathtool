@@ -50,7 +50,7 @@ qx.Class.define("xpathtool.Application",
         qx.log.appender.Console;
       }
       
-      // add the xpath tool
+      // The root
       var root = this.getRoot();
       
       // The xpath tool

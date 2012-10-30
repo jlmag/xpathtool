@@ -56,8 +56,7 @@ qx.Class.define("xpathtool.Application",
       // The xpath tool
       var xpathTool = new xpathtool.ui.Container();
       xpathTool.set({
-        width: 700,
-        height: 300
+        width: 700
       });
       
       // Add xpathtool in root

@@ -27,7 +27,7 @@ qx.Class.define("xpathtool.ui.File", {
     
     // add iFrame
     this.add(this.__getBoxFileField());
-    this.add(this.__getBoxFileIframe(), {flex: 2});
+    this.add(this.__getBoxFileIframe(), {flex: 1});
   
   },
   

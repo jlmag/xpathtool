@@ -41,7 +41,7 @@ qx.Class.define("xpathtool.ui.Container", {
     });
     this.setLayout(layout);
     this.set({
-      height: 500
+      //height: 500
     });
     
     // Add te menu bar
@@ -77,7 +77,7 @@ qx.Class.define("xpathtool.ui.Container", {
       var layout = new qx.ui.layout.HBox(5);
       var container = new qx.ui.container.Composite(layout);
       container.set({
-        //height: 300
+        //height: 500
       });
       
       var xpathBox = new xpathtool.ui.Xpath();

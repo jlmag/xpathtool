@@ -35,11 +35,14 @@ qx.Class.define("xpathtool.Xpathtool", {
     });
     
     // Create the UI (menubar and boxes for xpath and file)
-    this.add(this.__getMenuBar());
-    this.add(this.__getXpathFileBox(), {flex: 1});
+    this.__menuBar = this.__getMenuBar();
+    this.__xpathFileBox = this.__getXpathFileBox();
+    
+    this.add(this.__menuBar);
+    this.add(this.__xpathFileBox, {flex: 1});
     
     // Create the controler
-    this.__controler = new xpathtool.ctrl.Controler();
+    this.__controler = new xpathtool.ctrl.Controler(this.__menuBar, this.__xpathFileBox);
   },
   
   properties : {

@@ -55,6 +55,7 @@ qx.Class.define("xpathtool.ui.Xpath", {
       
       // The button
       var button = new qx.ui.form.Button("Enter");
+      button.setEnabled(false);
       
       container.add(comboBox, ({flex: 1}));
       container.add(button);

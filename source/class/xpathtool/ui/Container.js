@@ -10,16 +10,7 @@
   
 /* ******************************************************************* 
  
-#asset(qx/icon/${qx.icontheme}/16/actions/document-new.png)
-#asset(qx/icon/${qx.icontheme}/16/actions/document-save.png)
-#asset(qx/icon/${qx.icontheme}/16/actions/document-save-as.png)
-#asset(qx/icon/${qx.icontheme}/16/actions/edit-undo.png)
-#asset(qx/icon/${qx.icontheme}/16/actions/edit-redo.png)
-#asset(qx/icon/${qx.icontheme}/16/actions/edit-cut.png)
-#asset(qx/icon/${qx.icontheme}/16/actions/edit-copy.png)
-#asset(qx/icon/${qx.icontheme}/16/actions/edit-paste.png)
-#asset(qx/icon/${qx.icontheme}/16/actions/system-search.png)
-#asset(qx/icon/${qx.icontheme}/16/apps/utilities-help.png)
+
  
 ******************************************************************* */  
 

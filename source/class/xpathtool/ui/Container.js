@@ -62,7 +62,6 @@ qx.Class.define("xpathtool.ui.Container", {
       });
 
       var toolbar = new qx.ui.toolbar.ToolBar;
-      //toolbar.setWidth(600);
       frame.add(toolbar);
       
       var menuPart = new qx.ui.toolbar.Part;
@@ -99,24 +98,24 @@ qx.Class.define("xpathtool.ui.Container", {
     {
       var menu = new qx.ui.menu.Menu;
 
-      var newButton = new qx.ui.menu.Button("Load list", "icon/16/actions/document-new.png");
-      var openButton = new qx.ui.menu.Button("Save list", "icon/16/actions/document-save.png");
-      var closeButton = new qx.ui.menu.Button("Erase list");
-      var saveButton = new qx.ui.menu.Button("Copy XPath to clipboard", "icon/16/actions/document-save.png");
-      var saveAsButton = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/document-save-as.png");
+      var xpLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/document-new.png");
+      var xpSaveList = new qx.ui.menu.Button("Save list", "icon/16/actions/document-save.png");
+      var xpEraseList = new qx.ui.menu.Button("Erase list");
+      var xpCopyClipboard = new qx.ui.menu.Button("Copy XPath to clipboard", "icon/16/actions/document-save.png");
+      var xpCopyListClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/document-save-as.png");
       
-      /*newButton.addListener("execute", this.debugButton);
-      openButton.addListener("execute", this.debugButton);
-      closeButton.addListener("execute", this.debugButton);
-      saveButton.addListener("execute", this.debugButton);
-      saveAsButton.addListener("execute", this.debugButton);*/
+      /*xpLoadList.addListener("execute", this.debugButton);
+      xpSaveList.addListener("execute", this.debugButton);
+      xpEraseList.addListener("execute", this.debugButton);
+      xpCopyClipboard.addListener("execute", this.debugButton);
+      xpCopyListClipboard.addListener("execute", this.debugButton);*/
 
-      menu.add(newButton);
-      menu.add(openButton);
-      menu.add(closeButton);
+      menu.add(xpLoadList);
+      menu.add(xpSaveList);
+      menu.add(xpEraseList);
       menu.addSeparator();
-      menu.add(saveButton);
-      menu.add(saveAsButton);
+      menu.add(xpCopyClipboard);
+      menu.add(xpCopyListClipboard);
       
       return menu;
     },
@@ -130,24 +129,24 @@ qx.Class.define("xpathtool.ui.Container", {
     {
       var menu = new qx.ui.menu.Menu;
 
-      var undoButton = new qx.ui.menu.Button("Load list", "icon/16/actions/edit-undo.png");
-      var redoButton = new qx.ui.menu.Button("Save list", "icon/16/actions/edit-redo.png");
-      var cutButton = new qx.ui.menu.Button("Erase list", "icon/16/actions/edit-cut.png");
-      var copyButton = new qx.ui.menu.Button("Copy address to clipboard", "icon/16/actions/edit-copy.png");
-      var pasteButton = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
+      var fileLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/edit-undo.png");
+      var fileSaveList = new qx.ui.menu.Button("Save list", "icon/16/actions/edit-redo.png");
+      var fileEraseList = new qx.ui.menu.Button("Erase list", "icon/16/actions/edit-cut.png");
+      var fileCopyClipboard = new qx.ui.menu.Button("Copy address to clipboard", "icon/16/actions/edit-copy.png");
+      var fileCopyListClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
 
-      /*undoButton.addListener("execute", this.debugButton);
-      redoButton.addListener("execute", this.debugButton);
-      cutButton.addListener("execute", this.debugButton);
-      copyButton.addListener("execute", this.debugButton);
-      pasteButton.addListener("execute", this.debugButton);*/
+      /*fileLoadList.addListener("execute", this.debugButton);
+      fileSaveList.addListener("execute", this.debugButton);
+      fileEraseList.addListener("execute", this.debugButton);
+      fileCopyClipboard.addListener("execute", this.debugButton);
+      fileCopyListClipboard.addListener("execute", this.debugButton);*/
 
-      menu.add(undoButton);
-      menu.add(redoButton);
-      menu.add(cutButton);
+      menu.add(fileLoadList);
+      menu.add(fileSaveList);
+      menu.add(fileEraseList);
       menu.addSeparator();
-      menu.add(copyButton);
-      menu.add(pasteButton);
+      menu.add(fileCopyClipboard);
+      menu.add(fileCopyListClipboard);
 
       return menu;
     },
@@ -161,14 +160,14 @@ qx.Class.define("xpathtool.ui.Container", {
     {
       var menu = new qx.ui.menu.Menu;
 
-      var searchButton = new qx.ui.menu.Button("Result box", "icon/16/actions/system-search.png");
-      var nextButton = new qx.ui.menu.Button("All");
+      var eraseResultBox = new qx.ui.menu.Button("Result box", "icon/16/actions/system-search.png");
+      var eraseAll = new qx.ui.menu.Button("All");
 
-      /*searchButton.addListener("execute", this.debugButton);
-      nextButton.addListener("execute", this.debugButton);*/
+      /*eraseResultBox.addListener("execute", this.debugButton);
+      eraseAll.addListener("execute", this.debugButton);*/
 
-      menu.add(searchButton);
-      menu.add(nextButton);
+      menu.add(eraseResultBox);
+      menu.add(eraseAll);
 
       return menu;
     },
@@ -183,25 +182,61 @@ qx.Class.define("xpathtool.ui.Container", {
     {
       var menu = new qx.ui.menu.Menu;
 
-      var topicsButton = new qx.ui.menu.Button("Topics", "icon/16/apps/utilities-help.png");
-      var quickButton = new qx.ui.menu.Button("QooXdoo");
+      var showHelp = new qx.ui.menu.Button("Topics", "icon/16/apps/utilities-help.png");
+      /*var quickButton = new qx.ui.menu.Button("QooXdoo");
       var onlineButton = new qx.ui.menu.Button("Online Forum");
-      var infoButton = new qx.ui.menu.Button("Info...");
+      var infoButton = new qx.ui.menu.Button("Info...");*/
 
-      /*topicsButton.addListener("execute", this.debugButton);
+      /*showHelp.addListener("execute", this.debugButton);
       quickButton.addListener("execute", this.debugButton);
       onlineButton.addListener("execute", this.debugButton);
       infoButton.addListener("execute", this.debugButton);*/
 
-      menu.add(topicsButton);
-      menu.add(quickButton);
+      menu.add(showHelp);
+      /*menu.add(quickButton);
       menu.addSeparator();
       menu.add(onlineButton);
       menu.addSeparator();
-      menu.add(infoButton);
+      menu.add(infoButton);*/
 
       return menu;
     }
+  },
+  
+  /**
+   * Return the box for xpath and file
+   * 
+   * @return {qx.ui.container.Composite} The container fro xpath and file
+   */
+  __getContainerXpFile : function() {
+    var layout = new qx.ui.layout.HBox(5);
+    var box = new qx.ui.container.Canvas(layout);
+    
+    return box;
+  },
+  
+  /**
+   * Return the box for xpath
+   *
+   * @return {qx.ui.container.Composite} The box for xpath
+   */
+  __getXpathBox : function() {
+    var layout = new qx.ui.layout.VBox(5);
+    var box = new qx.ui.container.Composite(layout);
+    
+    return box;
+  },
+  
+  /**
+   * Return the box for file
+   *
+   * @return {qx.ui.container.Composite} The box for file
+   */
+  __getFileBox : function() {
+    var layout = new qx.ui.layout.VBox(5);
+    var box = new qx.ui.container.Composite(layout);
+    
+    return box;
   },
   
   destruct : function() {

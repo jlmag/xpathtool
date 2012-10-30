@@ -36,19 +36,18 @@ qx.Class.define("xpathtool.ui.Container", {
     this.base(arguments);
   
     // init
-    var layout = new qx.ui.layout.Dock().set({
-      spacingY: 5
-    });
+    var layout = new qx.ui.layout.VBox(5)
     this.setLayout(layout);
     this.set({
-      //height: 500
+      minWidth: 600,
+      minHeight: 500
     });
     
     // Add te menu bar
-    this.add(this.__getMenuBar(), {edge:"north"});
+    this.add(this.__getMenuBar());
     
     // Add the box for xpath and file
-    this.add(this.__getXpathFileBox(), {edge:"north"});
+    this.add(this.__getXpathFileBox(), {flex: 1});
   },
   
   properties : {
@@ -76,9 +75,6 @@ qx.Class.define("xpathtool.ui.Container", {
     __getXpathFileBox : function() {
       var layout = new qx.ui.layout.HBox(5);
       var container = new qx.ui.container.Composite(layout);
-      container.set({
-        //height: 500
-      });
       
       var xpathBox = new xpathtool.ui.Xpath();
       var fileBox = new xpathtool.ui.File();

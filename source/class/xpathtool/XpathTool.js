@@ -34,15 +34,15 @@ qx.Class.define("xpathtool.Xpathtool", {
       minHeight: 500
     });
     
+    // Create the controler
+    this.__controler = new xpathtool.ctrl.Controler();
+    
     // Create the UI (menubar and boxes for xpath and file)
-    this.__menuBar = this.__getMenuBar();
+    this.__menuBar = this.__getMenuBar(this.__controler);
     this.__xpathFileBox = this.__getXpathFileBox();
     
     this.add(this.__menuBar);
     this.add(this.__xpathFileBox, {flex: 1});
-    
-    // Create the controler
-    this.__controler = new xpathtool.ctrl.Controler(this.__menuBar, this.__xpathFileBox);
   },
   
   properties : {
@@ -61,8 +61,8 @@ qx.Class.define("xpathtool.Xpathtool", {
      * 
      * @return {qx.ui.container.Composite}
      */
-    __getMenuBar : function() {
-      var menuBar = new xpathtool.ui.Menu();
+    __getMenuBar : function(ctrl) {
+      var menuBar = new xpathtool.ui.Menu(ctrl);
       
       return menuBar;
     },

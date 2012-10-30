@@ -22,7 +22,7 @@ qx.Class.define("xpathtool.ctrl.Controler", {
   
   extend : qx.core.Object,
   
-  construct : function(menuBar, xpathFileBox) {
+  construct : function() {
     this.base(arguments);
   
     // Create commands
@@ -47,21 +47,8 @@ qx.Class.define("xpathtool.ctrl.Controler", {
   
   members : {
     
-    // Private members menu
-    __xpathLoadListCmd : null,
-    __xpathSaveListCmd : null,
-    __xpathEraseListCmd : null,
-    __xpathCopyClipboardCmd : null,
-    __xpathListCopyClipboardCmd : null,
-    __fileLoadListCmd : null,
-    __fileSaveListCmd : null,
-    __fileEraseListCmd : null,
-    __fileCopyClipboardCmd : null,
-    __fileLisCopytClipboardCmd : null,
-    __clearResultBoxCmd : null,
-    __clearAllCmd : null,
-    __topicsCmd : null,
-    __infoCmd : null,
+    // Privates members
+    __commands : null,
     
     /**
      * Create commands formenu
@@ -69,61 +56,76 @@ qx.Class.define("xpathtool.ctrl.Controler", {
      */
     __createCommands : function()
     {
+      var commands = {};
+      
       // menu XPath
-      this.__xpathLoadListCmd = new qx.ui.core.Command("Ctrl+A");
-      this.__xpathLoadListCmd.addListener("execute", this.__debugCmd);
+      commands.xpathLoadListCmd = new qx.ui.core.Command("Ctrl+A");
+      commands.xpathLoadListCmd.addListener("execute", this.__debugCmd);
 
-      this.__xpathSaveListCmd = new qx.ui.core.Command("Ctrl+B");
-      this.__xpathSaveListCmd.addListener("execute", this.__debugCmd);
+      commands.xpathSaveListCmd = new qx.ui.core.Command("Ctrl+B");
+      commands.xpathSaveListCmd.addListener("execute", this.__debugCmd);
 
-      this.__xpathEraseListCmd = new qx.ui.core.Command("Ctrl+C");
-      this.__xpathEraseListCmd.addListener("execute", this.__debugCmd);
+      commands.xpathEraseListCmd = new qx.ui.core.Command("Ctrl+C");
+      commands.xpathEraseListCmd.addListener("execute", this.__debugCmd);
 
-      this.__xpathCopyClipboardCmd = new qx.ui.core.Command("Ctrl+D");
-      this.__xpathCopyClipboardCmd.addListener("execute", this.__debugCmd);
+      commands.xpathCopyClipboardCmd = new qx.ui.core.Command("Ctrl+D");
+      commands.xpathCopyClipboardCmd.addListener("execute", this.__debugCmd);
 
-      this.__xpathListCopyClipboardCmd = new qx.ui.core.Command("Ctrl+F");
-      this.__xpathListCopyClipboardCmd.addListener("execute", this.__debugCmd);
+      commands.xpathListCopyClipboardCmd = new qx.ui.core.Command("Ctrl+F");
+      commands.xpathListCopyClipboardCmd.addListener("execute", this.__debugCmd);
 
       // Menu Fille
-      this.__fileLoadListCmd = new qx.ui.core.Command("Ctrl+G");
-      this.__fileLoadListCmd.addListener("execute", this.__debugCmd);
+      commands.fileLoadListCmd = new qx.ui.core.Command("Ctrl+G");
+      commands.fileLoadListCmd.addListener("execute", this.__debugCmd);
 
-      this.__fileSaveListCmd = new qx.ui.core.Command("Ctrl+H");
-      this.__fileSaveListCmd.addListener("execute", this.__debugCmd);
+      commands.fileSaveListCmd = new qx.ui.core.Command("Ctrl+H");
+      commands.fileSaveListCmd.addListener("execute", this.__debugCmd);
 
-      this.__fileEraseListCmd = new qx.ui.core.Command("Ctrl+I");
-      this.__fileEraseListCmd.addListener("execute", this.__debugCmd);
+      commands.fileEraseListCmd = new qx.ui.core.Command("Ctrl+I");
+      commands.fileEraseListCmd.addListener("execute", this.__debugCmd);
 
-      this.__fileCopyClipboardCmd = new qx.ui.core.Command("Ctrl+K");
-      this.__fileCopyClipboardCmd.addListener("execute", this.__debugCmd);
+      commands.fileCopyClipboardCmd = new qx.ui.core.Command("Ctrl+K");
+      commands.fileCopyClipboardCmd.addListener("execute", this.__debugCmd);
 
-      this.__fileLisCopytClipboardCmd = new qx.ui.core.Command("Ctrl+M");
-      this.__fileLisCopytClipboardCmd.addListener("execute", this.__debugCmd);
+      commands.fileLisCopytClipboardCmd = new qx.ui.core.Command("Ctrl+M");
+      commands.fileLisCopytClipboardCmd.addListener("execute", this.__debugCmd);
       
       // menu Clear
-      this.__clearResultBoxCmd = new qx.ui.core.Command("Ctrl+N");
-      this.__clearResultBoxCmd.addListener("execute", this.__debugCmd);
+      commands.clearResultBoxCmd = new qx.ui.core.Command("Ctrl+N");
+      commands.clearResultBoxCmd.addListener("execute", this.__debugCmd);
 
-      this.__clearAllCmd = new qx.ui.core.Command("Ctrl+O");
-      this.__clearAllCmd.addListener("execute", this.__debugCmd);
+      commands.clearAllCmd = new qx.ui.core.Command("Ctrl+O");
+      commands.clearAllCmd.addListener("execute", this.__debugCmd);
       
       // Menu Help
-      this.__topicsCmd = new qx.ui.core.Command("Ctrl+X");
-      this.__topicsCmd.addListener("execute", this.__debugCmd);
-      this.__topicsCmd.setEnabled(false);
+      commands.topicsCmd = new qx.ui.core.Command("Ctrl+X");
+      commands.topicsCmd.addListener("execute", this.__debugCmd);
+      commands.topicsCmd.setEnabled(false);
 
-      this.__infoCmd = new qx.ui.core.Command("Ctrl+C");
-      this.__infoCmd.addListener("execute", this.__debugCmd);
-      this.__infoCmd.setEnabled(false);
+      commands.infoCmd = new qx.ui.core.Command("Ctrl+C");
+      commands.infoCmd.addListener("execute", this.__debugCmd);
+      commands.infoCmd.setEnabled(false);
+      
+      this.__commands = commands;
+    },
+    
+    /**
+    * Get the command with the given command id
+    *
+    * @param commandId {String} the command's command id
+    * @return {qx.ui.core.Command} The command
+    */
+    getCommand : function(commandId) {
+      
+      return this.__commands[commandId];
     },
     
     /**
      * Ghost function
      *
      */
-    __debugCmd : function() {
-      
+    __debugCmd : function(e) {
+      this.debug(e.getData().getLabel());
     }
   },
   

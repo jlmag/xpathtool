@@ -36,8 +36,10 @@ qx.Class.define("xpathtool.ui.Menu", {
   
   extend : qx.ui.container.Composite,
   
-  construct : function() {
+  construct : function(ctrl) {
     this.base(arguments);
+    
+    this.__ctrl = ctrl;
     
     // Init
     this.setLayout(new qx.ui.layout.Grow());
@@ -61,6 +63,9 @@ qx.Class.define("xpathtool.ui.Menu", {
   */
   
   members : {
+    
+    // Private members
+    __ctrl: null,
     
     /**
      * Create the menu's bar
@@ -103,12 +108,21 @@ qx.Class.define("xpathtool.ui.Menu", {
     __getXpathMenu : function()
     {
       var menu = new qx.ui.menu.Menu;
-
+      
       var xpLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/document-open.png");
+      xpLoadList.setCommand(this.__ctrl.getCommand("xpathLoadListCmd"));
+      
       var xpSaveList = new qx.ui.menu.Button("Save list", "icon/16/actions/document-save.png");
+      xpSaveList.setCommand(this.__ctrl.getCommand("xpathSaveListCmd"));
+      
       var xpEraseList = new qx.ui.menu.Button("Erase list", "icon/16/actions/edit-cut.png");
+      xpEraseList.setCommand(this.__ctrl.getCommand("xpathEraseListCmd"));
+      
       var xpCopyClipboard = new qx.ui.menu.Button("Copy XPath to clipboard", "icon/16/actions/edit-paste.png");
+      xpCopyClipboard.setCommand(this.__ctrl.getCommand("xpathCopyClipboardCmd"));
+      
       var xpCopyListClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
+      xpCopyListClipboard.setCommand(this.__ctrl.getCommand("xpathListCopyClipboardCmd"));
       
       /*xpLoadList.addListener("execute", this.debugButton);
       xpSaveList.addListener("execute", this.debugButton);

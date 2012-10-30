@@ -36,10 +36,16 @@ qx.Class.define("xpathtool.ui.Container", {
     this.base(arguments);
   
     // the layout
-    this.setLayout(new qx.ui.layout.Dock());
+    var layout = new qx.ui.layout.Dock().set({
+      spacingY: 5
+    });
+    this.setLayout(layout);
     
     // Add te menu bar
-    this.add(this.__getMenuBar());
+    this.add(this.__getMenuBar(), {edge:"north"});
+    
+    // Add the box for xpath and file
+    this.add(this.__getXpathFileBox(), {edge:"north"});
   },
   
   properties : {
@@ -49,194 +55,32 @@ qx.Class.define("xpathtool.ui.Container", {
   members : {
     
     /**
-     * Return the menu's bar
-     *
-     * @return {qx.ui.container.Composite} the menu bar
+     * Return the menu bar
+     * 
+     * @return {qx.ui.container.Composite}
      */
-    __getMenuBar : function()
-    {
-      var frame = new qx.ui.container.Composite(new qx.ui.layout.Grow());
-      frame.set({
-        allowGrowY: false,
-        decorator: "main"
-      });
-
-      var toolbar = new qx.ui.toolbar.ToolBar;
-      frame.add(toolbar);
+    __getMenuBar : function() {
+      var menuBar = new xpathtool.ui.Menu();
       
-      var menuPart = new qx.ui.toolbar.Part;
-      var helpPart = new qx.ui.toolbar.Part;
-      
-      toolbar.add(menuPart);
-      toolbar.addSpacer();
-      toolbar.add(helpPart);
-
-      var fileMenu = new qx.ui.toolbar.MenuButton("XPath");
-      var editMenu = new qx.ui.toolbar.MenuButton("Files");
-      var searchMenu = new qx.ui.toolbar.MenuButton("Clear");
-      var helpMenu = new qx.ui.toolbar.MenuButton("Help");
-
-      fileMenu.setMenu(this.__getFileManu());
-      editMenu.setMenu(this.__getEditMenu());
-      searchMenu.setMenu(this.__getSearchMenu());
-      helpMenu.setMenu(this.__getHelpMenu());
-
-      menuPart.add(fileMenu);
-      menuPart.add(editMenu);
-      menuPart.add(searchMenu);
-      helpPart.add(helpMenu);
-
-      return frame;
+      return menuBar;
     },
     
     /**
-     * Return the menu File
-     *
-     * @return {qx.ui.menu.Menu} the menu File
+     * Return the box for xpath and file
+     * 
+     * @return {qx.ui.container.Composite} The box with Xpath box and file box
      */
-    __getFileManu : function()
-    {
-      var menu = new qx.ui.menu.Menu;
-
-      var xpLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/document-new.png");
-      var xpSaveList = new qx.ui.menu.Button("Save list", "icon/16/actions/document-save.png");
-      var xpEraseList = new qx.ui.menu.Button("Erase list");
-      var xpCopyClipboard = new qx.ui.menu.Button("Copy XPath to clipboard", "icon/16/actions/document-save.png");
-      var xpCopyListClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/document-save-as.png");
+    __getXpathFileBox : function() {
+      var layout = new qx.ui.layout.HBox(5);
+      var container = new qx.ui.container.Composite(layout);
+      var xpathBox = new xpathtool.ui.Xpath();
+      var fileBox = new xpathtool.ui.File();
       
-      /*xpLoadList.addListener("execute", this.debugButton);
-      xpSaveList.addListener("execute", this.debugButton);
-      xpEraseList.addListener("execute", this.debugButton);
-      xpCopyClipboard.addListener("execute", this.debugButton);
-      xpCopyListClipboard.addListener("execute", this.debugButton);*/
-
-      menu.add(xpLoadList);
-      menu.add(xpSaveList);
-      menu.add(xpEraseList);
-      menu.addSeparator();
-      menu.add(xpCopyClipboard);
-      menu.add(xpCopyListClipboard);
+      container.add(xpathBox);
+      container.add(fileBox, ({flex: 1}));
       
-      return menu;
-    },
-
-    /**
-     * Return the menu Edit
-     *
-     * @return {qx.ui.menu.Menu} the menu Edit
-     */
-    __getEditMenu : function()
-    {
-      var menu = new qx.ui.menu.Menu;
-
-      var fileLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/edit-undo.png");
-      var fileSaveList = new qx.ui.menu.Button("Save list", "icon/16/actions/edit-redo.png");
-      var fileEraseList = new qx.ui.menu.Button("Erase list", "icon/16/actions/edit-cut.png");
-      var fileCopyClipboard = new qx.ui.menu.Button("Copy address to clipboard", "icon/16/actions/edit-copy.png");
-      var fileCopyListClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
-
-      /*fileLoadList.addListener("execute", this.debugButton);
-      fileSaveList.addListener("execute", this.debugButton);
-      fileEraseList.addListener("execute", this.debugButton);
-      fileCopyClipboard.addListener("execute", this.debugButton);
-      fileCopyListClipboard.addListener("execute", this.debugButton);*/
-
-      menu.add(fileLoadList);
-      menu.add(fileSaveList);
-      menu.add(fileEraseList);
-      menu.addSeparator();
-      menu.add(fileCopyClipboard);
-      menu.add(fileCopyListClipboard);
-
-      return menu;
-    },
-
-    /**
-     * Return the menu Search
-     *
-     * @return {qx.ui.menu.Menu} the menu Search
-     */
-    __getSearchMenu : function()
-    {
-      var menu = new qx.ui.menu.Menu;
-
-      var eraseResultBox = new qx.ui.menu.Button("Result box", "icon/16/actions/system-search.png");
-      var eraseAll = new qx.ui.menu.Button("All");
-
-      /*eraseResultBox.addListener("execute", this.debugButton);
-      eraseAll.addListener("execute", this.debugButton);*/
-
-      menu.add(eraseResultBox);
-      menu.add(eraseAll);
-
-      return menu;
-    },
-
-
-    /**
-     * Return the menu Help
-     *
-     * @return {qx.ui.menu.Menu} the menu Help
-     */
-    __getHelpMenu : function()
-    {
-      var menu = new qx.ui.menu.Menu;
-
-      var showHelp = new qx.ui.menu.Button("Topics", "icon/16/apps/utilities-help.png");
-      /*var quickButton = new qx.ui.menu.Button("QooXdoo");
-      var onlineButton = new qx.ui.menu.Button("Online Forum");
-      var infoButton = new qx.ui.menu.Button("Info...");*/
-
-      /*showHelp.addListener("execute", this.debugButton);
-      quickButton.addListener("execute", this.debugButton);
-      onlineButton.addListener("execute", this.debugButton);
-      infoButton.addListener("execute", this.debugButton);*/
-
-      menu.add(showHelp);
-      /*menu.add(quickButton);
-      menu.addSeparator();
-      menu.add(onlineButton);
-      menu.addSeparator();
-      menu.add(infoButton);*/
-
-      return menu;
+      return container;
     }
-  },
-  
-  /**
-   * Return the box for xpath and file
-   * 
-   * @return {qx.ui.container.Composite} The container fro xpath and file
-   */
-  __getContainerXpFile : function() {
-    var layout = new qx.ui.layout.HBox(5);
-    var box = new qx.ui.container.Canvas(layout);
-    
-    return box;
-  },
-  
-  /**
-   * Return the box for xpath
-   *
-   * @return {qx.ui.container.Composite} The box for xpath
-   */
-  __getXpathBox : function() {
-    var layout = new qx.ui.layout.VBox(5);
-    var box = new qx.ui.container.Composite(layout);
-    
-    return box;
-  },
-  
-  /**
-   * Return the box for file
-   *
-   * @return {qx.ui.container.Composite} The box for file
-   */
-  __getFileBox : function() {
-    var layout = new qx.ui.layout.VBox(5);
-    var box = new qx.ui.container.Composite(layout);
-    
-    return box;
   },
   
   destruct : function() {

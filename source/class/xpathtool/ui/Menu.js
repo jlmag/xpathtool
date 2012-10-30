@@ -10,9 +10,13 @@
   
 /* ******************************************************************* 
  
+#asset(qx/icon/${qx.icontheme}/16/apps/utilities-notes.png)
+#asset(qx/icon/${qx.icontheme}/16/places/user-trash.png)
 #asset(qx/icon/${qx.icontheme}/16/actions/document-new.png)
+#asset(qx/icon/${qx.icontheme}/16/actions/document-open.png)
 #asset(qx/icon/${qx.icontheme}/16/actions/document-save.png)
 #asset(qx/icon/${qx.icontheme}/16/actions/document-save-as.png)
+#asset(qx/icon/${qx.icontheme}/16/actions/edit-clear.png)
 #asset(qx/icon/${qx.icontheme}/16/actions/edit-undo.png)
 #asset(qx/icon/${qx.icontheme}/16/actions/edit-redo.png)
 #asset(qx/icon/${qx.icontheme}/16/actions/edit-cut.png)
@@ -50,6 +54,12 @@ qx.Class.define("xpathtool.ui.Menu", {
   
   },
   
+  /*
+  *****************************************************************************
+  MEMBERS
+  *****************************************************************************
+  */
+  
   members : {
     
     /**
@@ -69,19 +79,19 @@ qx.Class.define("xpathtool.ui.Menu", {
       toolbar.addSpacer();
       toolbar.add(helpPart);
 
-      var fileMenu = new qx.ui.toolbar.MenuButton("XPath");
-      var editMenu = new qx.ui.toolbar.MenuButton("Files");
-      var searchMenu = new qx.ui.toolbar.MenuButton("Clear");
+      var xpathMenu = new qx.ui.toolbar.MenuButton("XPath");
+      var fileMenu = new qx.ui.toolbar.MenuButton("Files");
+      var clearMenu = new qx.ui.toolbar.MenuButton("Clear");
       var helpMenu = new qx.ui.toolbar.MenuButton("Help");
 
-      fileMenu.setMenu(this.__getFileManu());
-      editMenu.setMenu(this.__getEditMenu());
-      searchMenu.setMenu(this.__getSearchMenu());
+      xpathMenu.setMenu(this.__getXpathMenu());
+      fileMenu.setMenu(this.__getFileMenu());
+      clearMenu.setMenu(this.__getClearMenu());
       helpMenu.setMenu(this.__getHelpMenu());
 
+      menuPart.add(xpathMenu);
       menuPart.add(fileMenu);
-      menuPart.add(editMenu);
-      menuPart.add(searchMenu);
+      menuPart.add(clearMenu);
       helpPart.add(helpMenu);
     },
     
@@ -90,15 +100,15 @@ qx.Class.define("xpathtool.ui.Menu", {
      *
      * @return {qx.ui.menu.Menu} the menu File
      */
-    __getFileManu : function()
+    __getXpathMenu : function()
     {
       var menu = new qx.ui.menu.Menu;
 
-      var xpLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/document-new.png");
+      var xpLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/document-open.png");
       var xpSaveList = new qx.ui.menu.Button("Save list", "icon/16/actions/document-save.png");
-      var xpEraseList = new qx.ui.menu.Button("Erase list");
-      var xpCopyClipboard = new qx.ui.menu.Button("Copy XPath to clipboard", "icon/16/actions/document-save.png");
-      var xpCopyListClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/document-save-as.png");
+      var xpEraseList = new qx.ui.menu.Button("Erase list", "icon/16/actions/edit-cut.png");
+      var xpCopyClipboard = new qx.ui.menu.Button("Copy XPath to clipboard", "icon/16/actions/edit-paste.png");
+      var xpCopyListClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
       
       /*xpLoadList.addListener("execute", this.debugButton);
       xpSaveList.addListener("execute", this.debugButton);
@@ -121,14 +131,14 @@ qx.Class.define("xpathtool.ui.Menu", {
      *
      * @return {qx.ui.menu.Menu} the menu Edit
      */
-    __getEditMenu : function()
+    __getFileMenu : function()
     {
       var menu = new qx.ui.menu.Menu;
 
-      var fileLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/edit-undo.png");
-      var fileSaveList = new qx.ui.menu.Button("Save list", "icon/16/actions/edit-redo.png");
+      var fileLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/document-open.png");
+      var fileSaveList = new qx.ui.menu.Button("Save list", "icon/16/actions/document-save.png");
       var fileEraseList = new qx.ui.menu.Button("Erase list", "icon/16/actions/edit-cut.png");
-      var fileCopyClipboard = new qx.ui.menu.Button("Copy address to clipboard", "icon/16/actions/edit-copy.png");
+      var fileCopyClipboard = new qx.ui.menu.Button("Copy address to clipboard", "icon/16/actions/edit-paste.png");
       var fileCopyListClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
 
       /*fileLoadList.addListener("execute", this.debugButton);
@@ -152,12 +162,12 @@ qx.Class.define("xpathtool.ui.Menu", {
      *
      * @return {qx.ui.menu.Menu} the menu Search
      */
-    __getSearchMenu : function()
+    __getClearMenu : function()
     {
       var menu = new qx.ui.menu.Menu;
 
-      var eraseResultBox = new qx.ui.menu.Button("Result box", "icon/16/actions/system-search.png");
-      var eraseAll = new qx.ui.menu.Button("All");
+      var eraseResultBox = new qx.ui.menu.Button("Result box", "icon/16/actions/edit-clear.png");
+      var eraseAll = new qx.ui.menu.Button("All", "icon/16/places/user-trash.png");
 
       /*eraseResultBox.addListener("execute", this.debugButton);
       eraseAll.addListener("execute", this.debugButton);*/
@@ -178,25 +188,23 @@ qx.Class.define("xpathtool.ui.Menu", {
       var menu = new qx.ui.menu.Menu;
 
       var showHelp = new qx.ui.menu.Button("Topics", "icon/16/apps/utilities-help.png");
-      /*var quickButton = new qx.ui.menu.Button("QooXdoo");
-      var onlineButton = new qx.ui.menu.Button("Online Forum");
-      var infoButton = new qx.ui.menu.Button("Info...");*/
+      var infoButton = new qx.ui.menu.Button("Info...", "icon/16/apps/utilities-notes.png");
 
       /*showHelp.addListener("execute", this.debugButton);
-      quickButton.addListener("execute", this.debugButton);
-      onlineButton.addListener("execute", this.debugButton);
       infoButton.addListener("execute", this.debugButton);*/
 
       menu.add(showHelp);
-      /*menu.add(quickButton);
-      menu.addSeparator();
-      menu.add(onlineButton);
-      menu.addSeparator();
-      menu.add(infoButton);*/
+      menu.add(infoButton);
 
       return menu;
     }
   },
+  
+  /*
+  *****************************************************************************
+  DESTRUCTOR
+  *****************************************************************************
+  */
   
   destruct : function() {
     

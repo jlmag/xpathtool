@@ -186,30 +186,6 @@ qx.Class.define("xpathtool.ui.Menu", {
       menu.add(infoButton);*/
 
       return menu;
-    },
-  
-    /**
-     * Return the box for xpath and file
-     * 
-     * @return {qx.ui.container.Composite} The container fro xpath and file
-     */
-    __getContainerXpFile : function() {
-      var layout = new qx.ui.layout.HBox(5);
-      var box = new qx.ui.container.Canvas(layout);
-      
-      return box;
-    },
-    
-    /**
-     * Return the box for file
-     *
-     * @return {qx.ui.container.Composite} The box for file
-     */
-    __getFileBox : function() {
-      var layout = new qx.ui.layout.VBox(5);
-      var box = new qx.ui.container.Composite(layout);
-      
-      return box;
     }
   },
   

@@ -35,11 +35,14 @@ qx.Class.define("xpathtool.ui.Container", {
   construct : function() {
     this.base(arguments);
   
-    // the layout
+    // init
     var layout = new qx.ui.layout.Dock().set({
       spacingY: 5
     });
     this.setLayout(layout);
+    this.set({
+      height: 500
+    });
     
     // Add te menu bar
     this.add(this.__getMenuBar(), {edge:"north"});
@@ -73,11 +76,15 @@ qx.Class.define("xpathtool.ui.Container", {
     __getXpathFileBox : function() {
       var layout = new qx.ui.layout.HBox(5);
       var container = new qx.ui.container.Composite(layout);
+      container.set({
+        //height: 300
+      });
+      
       var xpathBox = new xpathtool.ui.Xpath();
       var fileBox = new xpathtool.ui.File();
       
-      container.add(xpathBox);
-      container.add(fileBox, ({flex: 1}));
+      container.add(xpathBox, {flex: 1});
+      container.add(fileBox, {flex: 2});
       
       return container;
     }

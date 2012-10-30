@@ -5,9 +5,11 @@
 # Directory
 build/
 mockups/
+inspector/
 
 # Files
 xpathtool.komodoproject
 generate.py
 readme.txt
 source/script/*
+source/inspector.html

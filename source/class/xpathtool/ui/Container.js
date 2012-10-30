@@ -30,7 +30,7 @@ qx.Class.define("xpathtool.ui.Container", {
     var layout = new qx.ui.layout.VBox(5)
     this.setLayout(layout);
     this.set({
-      minWidth: 600,
+      minWidth: 700,
       minHeight: 500
     });
     

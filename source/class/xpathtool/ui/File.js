@@ -72,7 +72,7 @@ qx.Class.define("xpathtool.ui.File", {
     __getBoxFileIframe : function() {
       
       // The iFrame
-      var iframe = new qx.ui.embed.Iframe("http://www.qooxdoo.org");
+      var iframe = new qx.ui.embed.ThemedIframe("http://www.qooxdoo.org");
       
       return iframe;
     }

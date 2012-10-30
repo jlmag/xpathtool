@@ -34,11 +34,12 @@ qx.Class.define("xpathtool.Xpathtool", {
       minHeight: 500
     });
     
-    // Add te menu bar
+    // Create the UI (menubar and boxes for xpath and file)
     this.add(this.__getMenuBar());
-    
-    // Add the box for xpath and file
     this.add(this.__getXpathFileBox(), {flex: 1});
+    
+    // Create the controler
+    this.__controler = new xpathtool.ctrl.Controler();
   },
   
   properties : {
@@ -46,6 +47,11 @@ qx.Class.define("xpathtool.Xpathtool", {
   },
   
   members : {
+    
+    // Privates members
+    __menuBar : null,
+    __xpathFileBox : null,
+    __controler : null,
     
     /**
      * Return the menu bar

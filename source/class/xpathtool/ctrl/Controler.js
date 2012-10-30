@@ -22,7 +22,7 @@ qx.Class.define("xpathtool.ctrl.Controler", {
   
   extend : qx.core.Object,
   
-  construct : function() {
+  construct : function(menuBar, xpathFileBox) {
     this.base(arguments);
   
     // Create commands

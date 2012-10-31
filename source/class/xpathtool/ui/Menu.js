@@ -121,8 +121,8 @@ qx.Class.define("xpathtool.ui.Menu", {
       var xpCopyClipboard = new qx.ui.menu.Button("Copy XPath to clipboard", "icon/16/actions/edit-paste.png");
       xpCopyClipboard.setCommand(this.__ctrl.getCommand("xpathCopyClipboardCmd"));
       
-      var xpCopyListClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
-      xpCopyListClipboard.setCommand(this.__ctrl.getCommand("xpathListCopyClipboardCmd"));
+      var xpListCopyClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
+      xpListCopyClipboard.setCommand(this.__ctrl.getCommand("xpathListCopyClipboardCmd"));
       
       /*xpLoadList.addListener("execute", this.debugButton);
       xpSaveList.addListener("execute", this.debugButton);
@@ -135,7 +135,7 @@ qx.Class.define("xpathtool.ui.Menu", {
       menu.add(xpEraseList);
       menu.addSeparator();
       menu.add(xpCopyClipboard);
-      menu.add(xpCopyListClipboard);
+      menu.add(xpListCopyClipboard);
       
       return menu;
     },
@@ -150,10 +150,19 @@ qx.Class.define("xpathtool.ui.Menu", {
       var menu = new qx.ui.menu.Menu;
 
       var fileLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/document-open.png");
+      fileLoadList.setCommand(this.__ctrl.getCommand("fileLoadListCmd"));
+      
       var fileSaveList = new qx.ui.menu.Button("Save list", "icon/16/actions/document-save.png");
+      fileSaveList.setCommand(this.__ctrl.getCommand("fileSaveListCmd"));
+      
       var fileEraseList = new qx.ui.menu.Button("Erase list", "icon/16/actions/edit-cut.png");
+      fileEraseList.setCommand(this.__ctrl.getCommand("fileEraseListCmd"));
+      
       var fileCopyClipboard = new qx.ui.menu.Button("Copy address to clipboard", "icon/16/actions/edit-paste.png");
-      var fileCopyListClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
+      fileCopyClipboard.setCommand(this.__ctrl.getCommand("fileCopyClipboardCmd"));
+      
+      var fileListCopyClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
+      fileListCopyClipboard.setCommand(this.__ctrl.getCommand("fileLisCopytClipboardCmd"));
 
       /*fileLoadList.addListener("execute", this.debugButton);
       fileSaveList.addListener("execute", this.debugButton);
@@ -166,7 +175,7 @@ qx.Class.define("xpathtool.ui.Menu", {
       menu.add(fileEraseList);
       menu.addSeparator();
       menu.add(fileCopyClipboard);
-      menu.add(fileCopyListClipboard);
+      menu.add(fileListCopyClipboard);
 
       return menu;
     },
@@ -180,14 +189,17 @@ qx.Class.define("xpathtool.ui.Menu", {
     {
       var menu = new qx.ui.menu.Menu;
 
-      var eraseResultBox = new qx.ui.menu.Button("Result box", "icon/16/actions/edit-clear.png");
-      var eraseAll = new qx.ui.menu.Button("All", "icon/16/places/user-trash.png");
+      var clearResultBox = new qx.ui.menu.Button("Result box", "icon/16/actions/edit-clear.png");
+      clearResultBox.setCommand(this.__ctrl.getCommand("clearResultBoxCmd"));
+      
+      var clearAll = new qx.ui.menu.Button("All", "icon/16/places/user-trash.png");
+      clearAll.setCommand(this.__ctrl.getCommand("clearAllCmd"));
 
       /*eraseResultBox.addListener("execute", this.debugButton);
       eraseAll.addListener("execute", this.debugButton);*/
 
-      menu.add(eraseResultBox);
-      menu.add(eraseAll);
+      menu.add(clearResultBox);
+      menu.add(clearAll);
 
       return menu;
     },
@@ -201,14 +213,17 @@ qx.Class.define("xpathtool.ui.Menu", {
     {
       var menu = new qx.ui.menu.Menu;
 
-      var showHelp = new qx.ui.menu.Button("Topics", "icon/16/apps/utilities-help.png");
-      var infoButton = new qx.ui.menu.Button("Info...", "icon/16/apps/utilities-notes.png");
+      var topic = new qx.ui.menu.Button("Topics", "icon/16/apps/utilities-help.png");
+      topic.setCommand(this.__ctrl.getCommand("topicCmd"));
+      
+      var info = new qx.ui.menu.Button("Info...", "icon/16/apps/utilities-notes.png");
+      info.setCommand(this.__ctrl.getCommand("infoCmd"));
 
       /*showHelp.addListener("execute", this.debugButton);
       infoButton.addListener("execute", this.debugButton);*/
 
-      menu.add(showHelp);
-      menu.add(infoButton);
+      menu.add(topic);
+      menu.add(info);
 
       return menu;
     }

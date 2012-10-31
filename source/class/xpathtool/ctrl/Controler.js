@@ -98,9 +98,9 @@ qx.Class.define("xpathtool.ctrl.Controler", {
       commands.clearAllCmd.addListener("execute", this.__debugCmd);
       
       // Menu Help
-      commands.topicsCmd = new qx.ui.core.Command("Ctrl+X");
-      commands.topicsCmd.addListener("execute", this.__debugCmd);
-      commands.topicsCmd.setEnabled(false);
+      commands.topicCmd = new qx.ui.core.Command("Ctrl+X");
+      commands.topicCmd.addListener("execute", this.__debugCmd);
+      commands.topicCmd.setEnabled(false);
 
       commands.infoCmd = new qx.ui.core.Command("Ctrl+C");
       commands.infoCmd.addListener("execute", this.__debugCmd);

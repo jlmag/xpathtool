@@ -36,6 +36,8 @@ qx.Class.define("xpathtool.ui.File", {
   },
   
   members : {
+    __comboBox: null,
+    __button: null,
     
     /**
      * Return Box with comboBox and button for file
@@ -50,13 +52,15 @@ qx.Class.define("xpathtool.ui.File", {
       });
       
       // The comboBox
-      var comboBox = new qx.ui.form.ComboBox();
+      var comboBox = this.__comboBox = new qx.ui.form.ComboBox();
       comboBox.set({
         placeholder: "Enter your file path"  
       });
+      combobTextfield = comboBox.getChildControl("textfield");
+      combobTextfield.addListener("input", this.__manageButton, this);
       
       // The button
-      var button = new qx.ui.form.Button("Load");
+      var button = this.__button = new qx.ui.form.Button("Load");
       button.setEnabled(false);
       
       container.add(comboBox, ({flex: 1}));
@@ -76,6 +80,17 @@ qx.Class.define("xpathtool.ui.File", {
       var iframe = new qx.ui.embed.ThemedIframe("http://www.qooxdoo.org");
       
       return iframe;
+    },
+    
+    /**
+     * Control the button enable
+     *
+     * @param e {qx.event.type.Data} The data event
+     */
+    __manageButton : function(e) {
+      var value = e.getData();
+      
+      this.__button.setEnabled(value.length > 0);    
     }
   },
   

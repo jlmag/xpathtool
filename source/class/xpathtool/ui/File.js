@@ -38,6 +38,7 @@ qx.Class.define("xpathtool.ui.File", {
   members : {
     __comboBox: null,
     __button: null,
+    __iFrame : null,
     
     /**
      * Return Box with comboBox and button for file
@@ -56,8 +57,9 @@ qx.Class.define("xpathtool.ui.File", {
       comboBox.set({
         placeholder: "Enter your file path"  
       });
-      combobTextfield = comboBox.getChildControl("textfield");
-      combobTextfield.addListener("input", this.__manageButton, this);
+      
+      var comboBoxTextfield = comboBox.getChildControl("textfield");
+      comboBoxTextfield.addListener("input", this.__manageButton, this);
       
       // The button
       var button = this.__button = new qx.ui.form.Button("Load");
@@ -77,7 +79,7 @@ qx.Class.define("xpathtool.ui.File", {
     __getBoxFileIframe : function() {
       
       // The iFrame
-      var iframe = new qx.ui.embed.ThemedIframe("http://www.qooxdoo.org");
+      var iframe = this.__iFrame = new qx.ui.embed.ThemedIframe("http://www.qooxdoo.org");
       
       return iframe;
     },
@@ -91,6 +93,20 @@ qx.Class.define("xpathtool.ui.File", {
       var value = e.getData();
       
       this.__button.setEnabled(value.length > 0);    
+    },
+    
+    /**
+     * Return controls of file
+     *
+     * @return e {Object} Return controls of file
+     */
+    getControls :function(){
+      var controls = {};
+      controls.comboBox = this.__comboBox;
+      controls.button = this.__button;
+      controls.textArea = this.__iFrame;
+      
+      return controls;
     }
   },
   

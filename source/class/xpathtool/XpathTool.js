@@ -55,6 +55,8 @@ qx.Class.define("xpathtool.XpathTool", {
     __menuBar : null,
     __xpathFileBox : null,
     __controler : null,
+    __xpathControls : null,
+    __fileControls : null,
     
     /**
      * Return the menu bar
@@ -77,7 +79,10 @@ qx.Class.define("xpathtool.XpathTool", {
       var container = new qx.ui.container.Composite(layout);
       
       var xpathBox = new xpathtool.ui.Xpath();
+      this.__controler.setControls("xpath", xpathBox.getControls());
+      
       var fileBox = new xpathtool.ui.File();
+      this.__controler.setControls("file", fileBox.getControls());
       
       container.add(xpathBox, {flex: 1});
       container.add(fileBox, {flex: 2});

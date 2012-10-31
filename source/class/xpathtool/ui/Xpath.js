@@ -36,6 +36,7 @@ qx.Class.define("xpathtool.ui.Xpath", {
   members : {
     __comboBox: null,
     __button: null,
+    __textArea : null,
     
     /**
      * Return Box with comboBox and button for xpath
@@ -54,8 +55,9 @@ qx.Class.define("xpathtool.ui.Xpath", {
       comboBox.set({
         placeholder: "Enter your XPath syntaxe"  
       });
-      combobTextfield = comboBox.getChildControl("textfield");
-      combobTextfield.addListener("input", this.__manageButton, this);
+      
+      var comboBoxTextfield = comboBox.getChildControl("textfield");
+      comboBoxTextfield.addListener("input", this.__manageButton, this);
       
       // The button
       var button = this.__button = new qx.ui.form.Button("Enter");
@@ -73,7 +75,7 @@ qx.Class.define("xpathtool.ui.Xpath", {
      * @return {qx.ui.form.TextArea} the box for result
      */
     __getBoxXpathResult : function() {
-        var textArea = new qx.ui.form.TextArea("");
+        var textArea = this.__textArea = new qx.ui.form.TextArea("");
         
       return textArea;
     },
@@ -87,6 +89,20 @@ qx.Class.define("xpathtool.ui.Xpath", {
       var value = e.getData();
       
       this.__button.setEnabled(value.length > 0);    
+    },
+    
+    /**
+     * Return controls of xpath
+     *
+     * @return e {Object} Return controls of xpath
+     */
+    getControls :function(){
+      var controls = {};
+      controls.comboBox = this.__comboBox;
+      controls.button = this.__button;
+      controls.textArea = this.__textArea;
+      
+      return controls;
     }
   },
   

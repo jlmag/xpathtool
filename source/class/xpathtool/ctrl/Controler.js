@@ -49,6 +49,8 @@ qx.Class.define("xpathtool.ctrl.Controler", {
     
     // Privates members
     __commands : null,
+    __xpathControls : null,
+    __fileControls : null,
     
     /**
      * Create commands formenu
@@ -118,6 +120,15 @@ qx.Class.define("xpathtool.ctrl.Controler", {
     getCommand : function(commandId) {
       
       return this.__commands[commandId];
+    },
+    
+    /**
+     * Set controls of xpath box and file box
+     *
+     */
+    __setControls : function(from, controls) {
+      
+      this["__" + from + "Controls"] = controls;
     },
     
     /**

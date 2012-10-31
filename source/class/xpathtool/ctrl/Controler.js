@@ -126,9 +126,85 @@ qx.Class.define("xpathtool.ctrl.Controler", {
      * Set controls of xpath box and file box
      *
      */
-    __setControls : function(from, controls) {
+    setControls : function(from, controls) {
       
       this["__" + from + "Controls"] = controls;
+      
+      if(from == "xpath")
+      {
+        this.__addListenerForXpath();        
+      }
+      else if (from == "file")
+      {
+        this.__addListenerForFile();
+      }
+      
+    },
+    
+    /**
+     * Attach listeners for xpath
+     *
+     */
+    __addListenerForXpath : function() {
+      this.__xpathControls.button.addListener("execute", this.__xpathSend, this);
+      var list = this.__xpathControls.comboBox.getChildControl("list");
+      list.addListener("click", this.__xpathChangeSelection, this);
+    },
+    
+    /**
+     * Attach listeners for file
+     *
+     */
+    __addListenerForFile : function() {
+      this.__fileControls.button.addListener("execute", this.__fileSend, this);
+      var list = this.__fileControls.comboBox.getChildControl("list");
+      list.addListener("click", this.__fileChangeSelection, this);
+    },
+    
+    /**
+     * Update xpath data
+     *
+     * @param e {qx.event.type.Data} Data event
+     */
+    __xpathSend : function(e){
+      this.__xpathControls.button.setEnabled(false);
+      
+      var value = this.__xpathControls.comboBox.getValue();
+      var item = new qx.ui.form.ListItem(value);
+      
+      this.__xpathControls.comboBox.addAt(item, 0);
+    },
+    
+    /**
+     * on selection change xpath 
+     *
+     * @param e {qx.event.type.Data} Data event
+     */
+    __xpathChangeSelection : function(e){
+      this.__xpathControls.button.setEnabled(true);
+    },
+    
+    /**
+     * Update file data
+     *
+     * @param e {qx.event.type.Data} Data event
+     */
+    __fileSend : function(e){
+      this.__fileControls.button.setEnabled(false);
+      
+      var value = this.__fileControls.comboBox.getValue();
+      var item = new qx.ui.form.ListItem(value);
+      
+      this.__fileControls.comboBox.addAt(item, 0);
+    },
+    
+    /**
+     * on selection change file 
+     *
+     * @param e {qx.event.type.Data} Data event
+     */
+    __fileChangeSelection : function(e){
+      this.__fileControls.button.setEnabled(true);
     },
     
     /**

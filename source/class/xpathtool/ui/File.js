@@ -104,7 +104,7 @@ qx.Class.define("xpathtool.ui.File", {
       var controls = {};
       controls.comboBox = this.__comboBox;
       controls.button = this.__button;
-      controls.textArea = this.__iFrame;
+      controls.iframe = this.__iFrame;
       
       return controls;
     }

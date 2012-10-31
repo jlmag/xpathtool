@@ -159,7 +159,7 @@ qx.Class.define("xpathtool.ui.Menu", {
       var fileEraseList = new qx.ui.menu.Button("Erase list", "icon/16/actions/edit-cut.png");
       fileEraseList.setCommand(this.__ctrl.getCommand("fileEraseListCmd"));
       
-      var fileCopyClipboard = new qx.ui.menu.Button("Copy address to clipboard", "icon/16/actions/edit-paste.png");
+      var fileCopyClipboard = new qx.ui.menu.Button("Copy link to clipboard", "icon/16/actions/edit-paste.png");
       fileCopyClipboard.setCommand(this.__ctrl.getCommand("fileCopyClipboardCmd"));
       
       var fileListCopyClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");

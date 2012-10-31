@@ -128,17 +128,14 @@ qx.Class.define("xpathtool.ctrl.Controler", {
      */
     setControls : function(from, controls) {
       
-      this["__" + from + "Controls"] = controls;
-      
-      if(from == "xpath")
-      {
+      if(from == "xpath"){
+        this.__xpathControls = controls;
         this.__addListenerForXpath();        
       }
-      else if (from == "file")
-      {
+      else if (from == "file"){
+        this.__fileControls = controls;
         this.__addListenerForFile();
       }
-      
     },
     
     /**

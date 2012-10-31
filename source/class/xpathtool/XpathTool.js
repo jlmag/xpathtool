@@ -19,7 +19,7 @@
  *
  */
 
-qx.Class.define("xpathtool.Xpathtool", {  
+qx.Class.define("xpathtool.XpathTool", {  
   
   extend : qx.ui.container.Composite,
   

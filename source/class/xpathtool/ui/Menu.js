@@ -30,6 +30,7 @@
 /**
  * The menu container
  *
+ * @param ctrl {qx.core.Object} The controler
  */
 
 qx.Class.define("xpathtool.ui.Menu", {  

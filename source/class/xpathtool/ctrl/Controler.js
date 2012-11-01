@@ -62,13 +62,13 @@ qx.Class.define("xpathtool.ctrl.Controler", {
       
       // menu XPath
       commands.xpathLoadListCmd = new qx.ui.core.Command("Ctrl+A");
-      commands.xpathLoadListCmd.addListener("execute", this.__debugCmd);
+      commands.xpathLoadListCmd.addListener("execute", this.__cookies, this);
 
       commands.xpathSaveListCmd = new qx.ui.core.Command("Ctrl+B");
-      commands.xpathSaveListCmd.addListener("execute", this.__debugCmd);
+      commands.xpathSaveListCmd.addListener("execute", this.__cookies, this);
 
       commands.xpathEraseListCmd = new qx.ui.core.Command("Ctrl+C");
-      commands.xpathEraseListCmd.addListener("execute", this.__debugCmd);
+      commands.xpathEraseListCmd.addListener("execute", this.__cookies, this);
 
       commands.xpathCopyClipboardCmd = new qx.ui.core.Command("Ctrl+D");
       commands.xpathCopyClipboardCmd.addListener("execute", this.__debugCmd);
@@ -78,13 +78,13 @@ qx.Class.define("xpathtool.ctrl.Controler", {
 
       // Menu Fille
       commands.fileLoadListCmd = new qx.ui.core.Command("Ctrl+G");
-      commands.fileLoadListCmd.addListener("execute", this.__debugCmd);
+      commands.fileLoadListCmd.addListener("execute", this.__cookies, this);
 
       commands.fileSaveListCmd = new qx.ui.core.Command("Ctrl+H");
-      commands.fileSaveListCmd.addListener("execute", this.__debugCmd);
+      commands.fileSaveListCmd.addListener("execute", this.__cookies, this);
 
       commands.fileEraseListCmd = new qx.ui.core.Command("Ctrl+I");
-      commands.fileEraseListCmd.addListener("execute", this.__debugCmd);
+      commands.fileEraseListCmd.addListener("execute", this.__cookies, this);
 
       commands.fileCopyClipboardCmd = new qx.ui.core.Command("Ctrl+K");
       commands.fileCopyClipboardCmd.addListener("execute", this.__debugCmd);
@@ -94,10 +94,10 @@ qx.Class.define("xpathtool.ctrl.Controler", {
       
       // menu Clear
       commands.clearResultBoxCmd = new qx.ui.core.Command("Ctrl+N");
-      commands.clearResultBoxCmd.addListener("execute", this.__debugCmd);
+      commands.clearResultBoxCmd.addListener("execute", this.__clear, this);
 
       commands.clearAllCmd = new qx.ui.core.Command("Ctrl+O");
-      commands.clearAllCmd.addListener("execute", this.__debugCmd);
+      commands.clearAllCmd.addListener("execute", this.__clear, this);
       
       // Menu Help
       commands.topicCmd = new qx.ui.core.Command("Ctrl+X");
@@ -203,6 +203,81 @@ qx.Class.define("xpathtool.ctrl.Controler", {
     __fileChangeSelection : function(e){
       this.__fileControls.button.setEnabled(true);
     },
+    
+    /**
+     * Save, load or delete cookies
+     *
+     * @param e {qx.event.type.Data} Event data
+     */
+    __cookies : function(e) {
+      
+      var comboBox;
+      var arrData = [];
+      var menu = e.getData().getUserData("menu");
+      var cookiesName = menu + "Cookies";
+      var action = e.getData().getUserData("action");
+      
+      if(menu == "xpath"){
+        comboBox = this.__xpathControls.comboBox;
+      }
+      else if (menu == "file"){
+        comboBox = this.__fileControls.comboBox;
+      }
+      
+      var list = comboBox.getChildControl("list");
+      
+      switch(action)
+      {
+        case "save": // save xpath exp to cookies
+          var selectables = list.getSelectables(true);
+          
+          if(selectables.length){
+            for(var i = 0; i < selectables.length; i++){
+              arrData.push(selectables[i].getLabel());
+            }          
+            qx.bom.Cookie.set(cookiesName, arrData.join(","));
+          }
+          
+          break;
+        
+        case "load": // load xpath exp from cookies
+          var data = qx.bom.Cookie.get(cookiesName);
+          
+          if(data){
+            arrData = data.split(",");
+            comboBox.removeAll()
+            comboBox.setValue("");
+            for(var i = 0; i < arrData.length; i++){  
+              comboBox.add(new qx.ui.form.ListItem(arrData[i]));
+            }
+          }
+          
+          break;
+        
+        case "delete": // delete xpath exp and cookies
+          //qx.bom.Cookie.del(cookiesName);
+          comboBox.removeAll()
+          comboBox.setValue("");
+          
+          break;
+      }
+    },
+
+    /**
+     * Clear result pane or all
+     *
+     * @param e {qx.event.type.Data} Event data
+     */
+    __clear : function(e) {
+      
+      var action = e.getData().getUserData("action");
+      var textArea = this.__xpathControls.textArea;
+      
+      if(action == "result"){
+        textArea.setValue("ddddd");
+      }
+      
+    }, 
     
     /**
      * Ghost function

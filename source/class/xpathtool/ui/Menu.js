@@ -111,18 +111,26 @@ qx.Class.define("xpathtool.ui.Menu", {
       var menu = new qx.ui.menu.Menu;
       
       var xpLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/document-open.png");
+      xpLoadList.setUserData("menu", "xpath");
+      xpLoadList.setUserData("action", "load");
       xpLoadList.setCommand(this.__ctrl.getCommand("xpathLoadListCmd"));
       
       var xpSaveList = new qx.ui.menu.Button("Save list", "icon/16/actions/document-save.png");
+      xpSaveList.setUserData("menu", "xpath");
+      xpSaveList.setUserData("action", "save");
       xpSaveList.setCommand(this.__ctrl.getCommand("xpathSaveListCmd"));
       
       var xpEraseList = new qx.ui.menu.Button("Erase list", "icon/16/actions/edit-cut.png");
+      xpEraseList.setUserData("menu", "xpath");
+      xpEraseList.setUserData("action", "delete");
       xpEraseList.setCommand(this.__ctrl.getCommand("xpathEraseListCmd"));
       
       var xpCopyClipboard = new qx.ui.menu.Button("Copy XPath to clipboard", "icon/16/actions/edit-paste.png");
+      xpCopyClipboard.setUserData("menu", "xpath");
       xpCopyClipboard.setCommand(this.__ctrl.getCommand("xpathCopyClipboardCmd"));
       
       var xpListCopyClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
+      xpListCopyClipboard.setUserData("menu", "xpath");
       xpListCopyClipboard.setCommand(this.__ctrl.getCommand("xpathListCopyClipboardCmd"));
       
       /*xpLoadList.addListener("execute", this.debugButton);
@@ -151,18 +159,26 @@ qx.Class.define("xpathtool.ui.Menu", {
       var menu = new qx.ui.menu.Menu;
 
       var fileLoadList = new qx.ui.menu.Button("Load list", "icon/16/actions/document-open.png");
+      fileLoadList.setUserData("menu", "file");
+      fileLoadList.setUserData("action", "load");
       fileLoadList.setCommand(this.__ctrl.getCommand("fileLoadListCmd"));
       
       var fileSaveList = new qx.ui.menu.Button("Save list", "icon/16/actions/document-save.png");
+      fileSaveList.setUserData("menu", "file");
+      fileSaveList.setUserData("action", "save");
       fileSaveList.setCommand(this.__ctrl.getCommand("fileSaveListCmd"));
       
       var fileEraseList = new qx.ui.menu.Button("Erase list", "icon/16/actions/edit-cut.png");
+      fileEraseList.setUserData("menu", "file");
+      fileEraseList.setUserData("action", "delete");
       fileEraseList.setCommand(this.__ctrl.getCommand("fileEraseListCmd"));
       
       var fileCopyClipboard = new qx.ui.menu.Button("Copy link to clipboard", "icon/16/actions/edit-paste.png");
+      fileCopyClipboard.setUserData("menu", "file");
       fileCopyClipboard.setCommand(this.__ctrl.getCommand("fileCopyClipboardCmd"));
       
       var fileListCopyClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
+      fileListCopyClipboard.setUserData("menu", "file");
       fileListCopyClipboard.setCommand(this.__ctrl.getCommand("fileLisCopytClipboardCmd"));
 
       /*fileLoadList.addListener("execute", this.debugButton);
@@ -191,9 +207,13 @@ qx.Class.define("xpathtool.ui.Menu", {
       var menu = new qx.ui.menu.Menu;
 
       var clearResultBox = new qx.ui.menu.Button("Result box", "icon/16/actions/edit-clear.png");
+      clearResultBox.setUserData("menu", "clear");
+      clearResultBox.setUserData("action", "result");
       clearResultBox.setCommand(this.__ctrl.getCommand("clearResultBoxCmd"));
       
       var clearAll = new qx.ui.menu.Button("All", "icon/16/places/user-trash.png");
+      clearAll.setUserData("menu", "clear");
+      clearAll.setUserData("action", "all");
       clearAll.setCommand(this.__ctrl.getCommand("clearAllCmd"));
 
       /*eraseResultBox.addListener("execute", this.debugButton);

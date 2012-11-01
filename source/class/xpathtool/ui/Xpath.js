@@ -12,7 +12,15 @@
  
 
  
-******************************************************************* */  
+******************************************************************* */
+
+/**
+ * Class Xpath
+ *
+ * Creates the xpath UI content
+ * 
+ * @param typeText {String | null} The type of text area
+ */
   
 qx.Class.define("xpathtool.ui.Xpath", {  
   
@@ -36,6 +44,7 @@ qx.Class.define("xpathtool.ui.Xpath", {
   members : {
     __comboBox: null,
     __button: null,
+    __typeText : null,
     __textArea : null,
     
     /**
@@ -72,11 +81,10 @@ qx.Class.define("xpathtool.ui.Xpath", {
     /**
      * Return Box for results
      *
-     * @return {qx.ui.form.TextArea} the box for result
      */
     __getBoxXpathResult : function() {
-        var textArea = this.__textArea = new qx.ui.form.TextArea("");
-        
+
+      var textArea = this.__textArea = new qx.ui.form.TextArea("");
       return textArea;
     },
     
@@ -86,8 +94,8 @@ qx.Class.define("xpathtool.ui.Xpath", {
      * @param e {qx.event.type.Data} The data event
      */
     __manageButton : function(e) {
-      var value = e.getData();
       
+      var value = e.getData();      
       this.__button.setEnabled(value.length > 0);    
     },
     
@@ -97,6 +105,7 @@ qx.Class.define("xpathtool.ui.Xpath", {
      * @return e {Object} Return controls of xpath
      */
     getControls :function(){
+      
       var controls = {};
       controls.comboBox = this.__comboBox;
       controls.button = this.__button;

@@ -212,6 +212,11 @@ qx.Class.define("xpathtool.ctrl.Controler", {
       var item = new qx.ui.form.ListItem(value);
       
       this.__xpathControls.comboBox.addAt(item, 0);
+      
+      // Compute the xmlDoc by XPath exp
+      var text = this.__xpathControls.textArea.getValue();
+      var result = xpathtool.ctrl.Xpathtool.textXpathProcess(this.__xmlDoc, value)
+      this.__xpathControls.textArea.setValue(text + result);
     },
     
     /**

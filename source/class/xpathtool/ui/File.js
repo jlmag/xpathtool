@@ -79,9 +79,9 @@ qx.Class.define("xpathtool.ui.File", {
     __getBoxFileIframe : function() {
       
       // The iFrame
-      var iframe = this.__iFrame = new qx.ui.embed.ThemedIframe("http://www.qooxdoo.org");
+      var iFrame = this.__iFrame = new qx.ui.embed.ThemedIframe("http://www.qooxdoo.org");
       
-      return iframe;
+      return iFrame;
     },
     
     /**
@@ -104,7 +104,7 @@ qx.Class.define("xpathtool.ui.File", {
       var controls = {};
       controls.comboBox = this.__comboBox;
       controls.button = this.__button;
-      controls.iframe = this.__iFrame;
+      controls.iFrame = this.__iFrame;
       
       return controls;
     }

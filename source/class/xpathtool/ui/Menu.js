@@ -132,12 +132,6 @@ qx.Class.define("xpathtool.ui.Menu", {
       var xpListCopyClipboard = new qx.ui.menu.Button("Copy list to clipboard", "icon/16/actions/edit-paste.png");
       xpListCopyClipboard.setUserData("menu", "xpath");
       xpListCopyClipboard.setCommand(this.__ctrl.getCommand("xpathListCopyClipboardCmd"));
-      
-      /*xpLoadList.addListener("execute", this.debugButton);
-      xpSaveList.addListener("execute", this.debugButton);
-      xpEraseList.addListener("execute", this.debugButton);
-      xpCopyClipboard.addListener("execute", this.debugButton);
-      xpCopyListClipboard.addListener("execute", this.debugButton);*/
 
       menu.add(xpLoadList);
       menu.add(xpSaveList);
@@ -181,12 +175,6 @@ qx.Class.define("xpathtool.ui.Menu", {
       fileListCopyClipboard.setUserData("menu", "file");
       fileListCopyClipboard.setCommand(this.__ctrl.getCommand("fileLisCopytClipboardCmd"));
 
-      /*fileLoadList.addListener("execute", this.debugButton);
-      fileSaveList.addListener("execute", this.debugButton);
-      fileEraseList.addListener("execute", this.debugButton);
-      fileCopyClipboard.addListener("execute", this.debugButton);
-      fileCopyListClipboard.addListener("execute", this.debugButton);*/
-
       menu.add(fileLoadList);
       menu.add(fileSaveList);
       menu.add(fileEraseList);
@@ -216,9 +204,6 @@ qx.Class.define("xpathtool.ui.Menu", {
       clearAll.setUserData("action", "all");
       clearAll.setCommand(this.__ctrl.getCommand("clearAllCmd"));
 
-      /*eraseResultBox.addListener("execute", this.debugButton);
-      eraseAll.addListener("execute", this.debugButton);*/
-
       menu.add(clearResultBox);
       menu.add(clearAll);
 
@@ -239,9 +224,6 @@ qx.Class.define("xpathtool.ui.Menu", {
       
       var info = new qx.ui.menu.Button("Info...", "icon/16/apps/utilities-notes.png");
       info.setCommand(this.__ctrl.getCommand("infoCmd"));
-
-      /*showHelp.addListener("execute", this.debugButton);
-      infoButton.addListener("execute", this.debugButton);*/
 
       menu.add(topic);
       menu.add(info);

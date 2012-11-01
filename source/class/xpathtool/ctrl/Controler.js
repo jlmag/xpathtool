@@ -10,6 +10,8 @@
   
 /* ******************************************************************* 
  
+#asset(xpathtool/*)
+#asset(xpathtool/files/*)
  
 ******************************************************************* */
 
@@ -27,6 +29,7 @@ qx.Class.define("xpathtool.ctrl.Controler", {
   
     // Create commands
     this.__createCommands();
+    this.__createXhr();
   },
   
   /*
@@ -49,6 +52,8 @@ qx.Class.define("xpathtool.ctrl.Controler", {
     
     // Privates members
     __commands : null,
+    __req : null,
+    __xmlDoc : null,
     __xpathControls : null,
     __fileControls : null,
     
@@ -123,6 +128,22 @@ qx.Class.define("xpathtool.ctrl.Controler", {
     },
     
     /**
+     * Create XHR resource
+     *
+     */
+    __createXhr : function() {
+      
+      var req = this.__req = new qx.io.request.Xhr();
+      req.setMethod("GET");
+      req.setAccept("application.xml");
+      req.setTimeout(10000);
+      req.setAsync(true);
+      
+      req.addListener("success", this.__successXhr, this)
+      req.addListener("error", this.__errorXhr)
+    },
+    
+    /**
      * Set controls of xpath box and file box
      *
      */
@@ -159,6 +180,27 @@ qx.Class.define("xpathtool.ctrl.Controler", {
     },
     
     /**
+     * XHR success
+     *
+     */
+    __successXhr : function(e) {
+        this.debug("XHR success");
+        this.debug(e);
+        
+        this.__fileControls.iFrame.setSource(this.__req.getUrl());
+        this.__xmlDoc = this.__req.getResponse();
+    },
+    
+    /**
+     * XHR error
+     *
+     */
+    __errorXhr : function(e) {
+        this.debug("XHR error");
+        this.debug(e);
+    },
+    
+    /**
      * Update xpath data
      *
      * @param e {qx.event.type.Data} Data event
@@ -187,12 +229,20 @@ qx.Class.define("xpathtool.ctrl.Controler", {
      * @param e {qx.event.type.Data} Data event
      */
     __fileSend : function(e){
-      this.__fileControls.button.setEnabled(false);
+      this.debug("__fileSend");
       
+      var url = "./resource/xpathtool/files/";
       var value = this.__fileControls.comboBox.getValue();
-      var item = new qx.ui.form.ListItem(value);
       
-      this.__fileControls.comboBox.addAt(item, 0);
+      this.__fileControls.button.setEnabled(false);
+      this.__fileControls.comboBox.addAt(new qx.ui.form.ListItem(value), 0);
+      
+      // Send xhr      
+      if(value != ""){
+        url += value;
+        this.__req.setUrl(url)
+        this.__req.send();
+      }
     },
     
     /**
@@ -274,10 +324,9 @@ qx.Class.define("xpathtool.ctrl.Controler", {
       var textArea = this.__xpathControls.textArea;
       
       if(action == "result"){
-        textArea.setValue("ddddd");
+        textArea.setValue("");
       }
-      
-    }, 
+    },
     
     /**
      * Ghost function
